@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Model">
+            <EntityType HasStream="false" Name="Product">
+                <Key>
+                    <PropertyRef Name="ProductId"/>
+                </Key>
+                <Property Name="ProductId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="ProductName" Type="Edm.String" isUnique="false"/>
+                <Property Name="IconName" Type="Edm.String" isUnique="false"/>
+                <Property Name="ProductDescription" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="ProductCategory" Type="Model.Category"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Category">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Department" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="Products" EntityType="Model.Product">
+                    <NavigationPropertyBinding Path="ProductCategory" Target="Categories"/>
+                </EntitySet>
+                <EntitySet Name="Categories" EntityType="Model.Category"/>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
